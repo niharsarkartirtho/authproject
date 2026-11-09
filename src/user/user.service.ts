@@ -28,6 +28,7 @@ export class UserService {
             username:registerDto.username,
             useremail:registerDto.useremail,
             password:hashPassword,
+            role:registerDto.role
         });
 
         const saveUser = await this.UserRepo.save(user);
@@ -59,7 +60,8 @@ export class UserService {
         //jwt generate korar ar jonno code
         const payload = {    //payload a id ar email rakha uchit not password
             sub:user.id,
-            email:user.useremail
+            email:user.useremail,
+            role:user.role //send role also into payload for role base auth
         };
         const accessToken = await this.jwtService.signAsync(payload);
 
