@@ -6,6 +6,7 @@ import { User } from './entites/user.entity.js';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { error } from 'console';
+import { JwtAuthGuard } from '../auth/jwt-auth/jwt-auth.guard.js';
 // secret use kore token generate kora hoi..abar validation ar somoy ai secret key 
 //ar sath a algorithm milay check kora hoi tai secret key lage
 @Module({
@@ -26,6 +27,6 @@ import { error } from 'console';
     }
   })],
   controllers: [UserController],
-  providers: [UserService],
+  providers: [UserService,JwtAuthGuard], // jwtauthgaurd provider a dilam jate use korte pari
 })
 export class UserModule {}
